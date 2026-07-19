@@ -43,7 +43,10 @@ const main = async () => {
 
     // eslint-disable-next-line no-restricted-syntax
     for await (const user of users) {
-      const articles = await Promise.all(Array.from({length: 12}, () => generateArticle(user.id)));
+      const articles = [];
+      for (let i = 0; i < 12; i++) {
+        articles.push(await generateArticle(user.id));
+      }
 
       // eslint-disable-next-line no-restricted-syntax
       for await (const article of articles) {
